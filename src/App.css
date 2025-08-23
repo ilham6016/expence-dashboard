@@ -1,38 +1,246 @@
-.App {
-  text-align: center;
+:root{
+  --bg:#0f1220; 
+  --panel:#171a2b; 
+  --muted:#9aa3b2; 
+  --text:#e8eaf1;
+  --primary:#7c5cff; 
+  --primary-2:#46c2ff; 
+  --danger:#ff6b6b; 
+  --ok:#3ddc97;
+  --ring: 0 0 0 2px rgba(124,92,255,.35);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+    margin : 0;
+    padding: 0;
+    box-sizing:border-box
+}
+html,body,#root{
+    height:100%
+}
+body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto;
+    color: var(--text);
+
+    background: 
+        radial-gradient(1200px 800px at 20% -20%, #272d53, transparent),
+        linear-gradient(180deg, #0f1220, #0b0e1a);
+
+    background-attachment: fixed;
+
+
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+/* layout */
+.container{
+    max-width:1450px;
+    margin:24px auto;
+    padding:0 16px
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.grid{
+    display:grid;
+    gap:16px
 }
 
-.App-link {
-  color: #61dafb;
+.grid-2{
+    grid-template-columns: 1.1fr .9fr
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media (max-width: 920px){
+    .grid-2{grid-template-columns:1fr} 
+}
+
+.panel{
+    background:var(--panel); 
+    border:1px solid rgba(255,255,255,.06); 
+    border-radius:14px; padding:16px
+}
+
+.panel h3{
+    margin:0 0 10px 0; 
+    font-size:16px; 
+    letter-spacing:.3px
+}
+
+.hr{
+    height:1px;
+    background:rgba(255,255,255,.06);
+    margin:12px 0
+}
+
+/* inputs */
+input, select, button, textarea {
+    background: #0d1022;
+    border: 1px solid rgba(255,255,255,.08);
+    color: var(--text); 
+    padding: 10px 12px;
+    border-radius: 10px; 
+    outline: none;
+    font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus { 
+    box-shadow: var(--ring); 
+    border-color: #7964ff;
+}
+
+label {
+    font-size: 12px;
+    color: var(--muted); 
+    display: block; 
+    margin-bottom: 6px;
+}
+
+.row {
+    display: grid; 
+    gap: 12px; 
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.col-12 { grid-column: span 6; }
+.col-6  { grid-column: span 6; }
+.col-4  { grid-column: span 6; }
+.col-3  { grid-column: span 6; }
+
+@media (max-width: 680px){ 
+    .col-12, .col-6, .col-4, .col-3 {
+        grid-column: span 12;
+    }
+}
+
+/* badges + list */
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 10px;
+    border-radius:999px;
+    background:#10132a;
+    border:1px solid rgba(255,255,255,.08); 
+    font-size:12px
+}
+
+.badge .dot{
+    width:8px;
+    height:8px;
+    border-radius:50%
+}
+
+.list{
+    display:flex;
+    flex-direction:column;gap:10px
+}
+
+.item{
+    display:grid; 
+    grid-template-columns:1fr auto auto; 
+    gap:12px; align-items:center; 
+    padding:12px; 
+    border:1px solid rgba(255,255,255,.06); 
+    border-radius:12px; 
+    background:#12152a
+}
+
+.item .title{
+    font-weight:600
+}
+
+.item .sub{
+    font-size:12px;
+    color:var(--muted)
+}
+
+.actions{
+    display:flex;
+    gap:8px
+}
+
+.btn{
+    cursor:pointer; 
+    border:none
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,var(--primary),var(--primary-2)); 
+    color:#0a0d1c; 
+    font-weight:700
+}
+
+.btn-ghost{
+    background:#10132a;
+    border:1px solid rgba(255,255,255,.08)
+}
+
+.btn-danger{
+    background:linear-gradient(135deg,#ff8f8f,var(--danger)); 
+    color:#1a0a0a; font-weight:700
+}
+
+.btn-sm{
+    font-size:13px;
+    padding:8px 10px;
+    border-radius:10px
+}
+
+.btn-lg{
+    font-size:14px;
+    padding:10px 14px;
+    border-radius:12px
+}
+
+.toolbar{
+    display:flex;
+    flex-wrap:wrap; 
+    gap:10px
+}
+/* summary cards */
+.cards{
+    display:grid; 
+    gap:12px; 
+    grid-template-columns: repeat(4,1fr)
+}
+
+.card{
+    padding:14px;
+    border-radius:14px;
+    background:#12152a;
+    border:1px solid rgba(255,255,255,.06)
+}
+.card .label{
+    font-size:12px;
+    color:var(--muted)
+}
+.card .value{
+    font-weight:800;
+    font-size:20px
+}
+
+@media (max-width:920px){
+    .cards{grid-template-columns: repeat(2,1fr)} 
+}
+@media (max-width:520px){ 
+    .cards{grid-template-columns: 1fr} 
+}
+
+/* chip group */
+.chips{
+    display:flex;
+    flex-wrap:wrap; 
+    gap:8px
+}
+.chip{
+    padding:6px 10px;
+    border-radius:999px;
+    background:#0d1022;
+    border:1px solid rgba(255,255,255,.08); 
+    font-size:12px; cursor:pointer
+}
+
+.chip.active{
+    outline:2px solid rgba(124,92,255,.5)
 }
