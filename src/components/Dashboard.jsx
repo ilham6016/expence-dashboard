@@ -41,7 +41,7 @@ export default function Dashboard({ items }) {
       .map(([k, v]) => ({
         key: k,
         name: categoryMap[k]?.name || k,
-        color: categoryMap[k]?.color || "#999",
+        color: categoryMap[k]?.color || `hsl(${Math.random()*360}, 70%, 60%)`,
         total: v,
       }))
       .sort((a, b) => b.total - a.total);
@@ -54,7 +54,10 @@ export default function Dashboard({ items }) {
       m[k] = (m[k] || 0) + x.amount;
     }
     const keys = Object.keys(m).sort();
-    return { labels: keys, values: keys.map((k) => m[k]) };
+    const colors = keys.map(
+      (_, i) => `hsl(${(i / keys.length) * 360}, 70%, 60%)`
+    ); // สร้างสีสำหรับแต่ละเดือน
+    return { labels: keys, values: keys.map((k) => m[k]), colors };
   }, [items]);
 
   const top5 = byCat.slice(0, 5);
@@ -94,7 +97,14 @@ export default function Dashboard({ items }) {
           <Bar
             data={{
               labels: byMonth.labels,
-              datasets: [{ label: "รายจ่ายต่อเดือน", data: byMonth.values }],
+              datasets: [
+                {
+                  label: "รายจ่ายต่อเดือน",
+                  data: byMonth.values,
+                  backgroundColor: byMonth.colors,
+                  borderRadius: 6,
+                },
+              ],
             }}
             options={{
               responsive: true,
@@ -112,6 +122,8 @@ export default function Dashboard({ items }) {
                 {
                   data: byCat.map((x) => x.total),
                   backgroundColor: byCat.map((x) => x.color),
+                  borderColor: "#0f1220",
+                  borderWidth: 1,
                 },
               ],
             }}
@@ -129,8 +141,13 @@ export default function Dashboard({ items }) {
               {
                 label: "Trend",
                 data: byMonth.values,
-                tension: 0.25,
+                tension: 0.3,
                 fill: false,
+                borderColor: "hsl(220, 70%, 60%)", // สีเส้น
+                backgroundColor: "hsl(220, 70%, 60%)", // จุด data
+                pointBackgroundColor: "hsl(220, 70%, 60%)",
+                pointBorderColor: "#fff",
+                pointHoverRadius: 6,
               },
             ],
           }}
