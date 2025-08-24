@@ -48,7 +48,7 @@ body {
 }
 
 .grid-2{
-    grid-template-columns: 1.1fr .9fr
+    grid-template-columns: .7fr 1.3fr
 }
 
 @media (max-width: 920px){
@@ -131,7 +131,7 @@ label {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1);      /* พลิกสี → ดำเป็นขาว */
+  filter: invert(1);
   cursor: pointer;
 }
 
@@ -215,11 +215,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius:12px
 }
 
-.toolbar{
-    display:flex;
-    flex-wrap:wrap; 
-    gap:10px
+.toolbar {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
 }
+
+
 
 /* summary cards */
 .cards {

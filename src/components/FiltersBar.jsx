@@ -59,6 +59,14 @@ export default function FiltersBar({
           </select>
         </div>
         <div>
+          <label>ค้นหาชื่อ</label>
+          <input
+            placeholder="พิมพ์คำค้น..."
+            value={filters.q}
+            onChange={(e) => upd("q", e.target.value)}
+          />
+        </div>
+        <div>
           <label>&nbsp;</label>
           <button
             className="btn btn-ghost btn-sm"
@@ -75,15 +83,6 @@ export default function FiltersBar({
             ล้างตัวกรอง
           </button>
         </div>
-        <div style={{ flex: 1 }} />
-        <div>
-          <label>ค้นหาชื่อ</label>
-          <input
-            placeholder="พิมพ์คำค้น..."
-            value={filters.q}
-            onChange={(e) => upd("q", e.target.value)}
-          />
-        </div>
         <div>
           <label>&nbsp;</label>
           <button className="btn btn-ghost btn-sm" onClick={onExport}>
@@ -96,6 +95,7 @@ export default function FiltersBar({
             Import JSON
           </button>
         </div>
+        <div style={{ flex: 1 }} />
       </div>
     </div>
   );
