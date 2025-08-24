@@ -59,7 +59,7 @@ export default function ExpenseForm({ onSubmit, editing, onCancel }) {
             placeholder="เช่น ข้าวแกง, Netflix"
           />
         </div>
-        <div className="col-3">
+        <div className="col-6">
           <label>จำนวนเงิน (฿)</label>
           <input
             type="number"
